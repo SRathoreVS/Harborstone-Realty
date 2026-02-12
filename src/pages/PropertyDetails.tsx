@@ -9,11 +9,8 @@ import listing4 from "@/assets/listings4.jpg";
 import listing5 from "@/assets/listings5.jpg";
 import listing6 from "@/assets/listings6.jpg";
 import listing7 from "@/assets/listings7.jpg";
-import {
-  useProperty,
-  useSimilarProperties,
-  useTotalProperties,
-} from "@/hooks/useProperties";
+
+import { useProperty, useSimilarProperties } from "@/hooks/useProperties";
 
 /* ---------------- DATA ---------------- */
 const PROPERTIES = [
@@ -96,7 +93,6 @@ export default function PropertyDetails() {
   const propertyId = Number(id);
   const property = useProperty(propertyId);
   const similar = useSimilarProperties(propertyId);
-  const total = useTotalProperties();
 
   const [activeImage, setActiveImage] = useState(0);
   const [pageState, setPageState] = useState<"enter" | "exit">("enter");
@@ -120,7 +116,7 @@ export default function PropertyDetails() {
     <section
       style={{
         background: "#ffffff",
-        paddingTop: 140, // navbar offset
+        paddingTop: 140,
         paddingBottom: 96,
         opacity: pageState === "enter" ? 1 : 0,
         transform: pageState === "enter" ? "translateY(0)" : "translateY(12px)",
@@ -134,15 +130,8 @@ export default function PropertyDetails() {
         url={`https://harborstone-realty.com/property/${property.id}`}
       />
 
-      {/* BACK / NEXT BUTTONS */}
-      <div
-        style={{
-          position: "absolute",
-          top: 80,
-          left: 0,
-          right: 0,
-        }}
-      >
+      {/* BACK / NEXT */}
+      <div style={{ position: "absolute", top: 80, left: 0, right: 0 }}>
         <div
           style={{
             maxWidth: 1440,
@@ -199,14 +188,7 @@ export default function PropertyDetails() {
             />
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              gap: 12,
-              overflowX: "auto",
-              paddingBottom: 8,
-            }}
-          >
+          <div style={{ display: "flex", gap: 12, overflowX: "auto" }}>
             {property.images.map((img, idx) => (
               <img
                 key={idx}
@@ -274,7 +256,7 @@ export default function PropertyDetails() {
           </div>
         </div>
 
-        {/* SIMILAR PROPERTIES */}
+        {/* SIMILAR */}
         <h2 style={{ marginBottom: 32 }}>Similar Properties</h2>
         <div
           style={{
@@ -304,10 +286,9 @@ export default function PropertyDetails() {
         </div>
       </div>
 
-      {/* RESPONSIVE */}
       <style>{`
         @media (max-width: 1024px) {
-          div[style*="gridTemplateColumns: 2fr 1fr"] {
+          div[style*="2fr 1fr"] {
             grid-template-columns: 1fr !important;
           }
           div[style*="repeat(3, 1fr)"] {
