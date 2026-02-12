@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const links = [
   { label: "Home", href: "/" },
@@ -26,16 +27,16 @@ export default function Navbar() {
           {/* Desktop Nav */}
           <nav className="nav-links">
             {links.map((l) => (
-              <a key={l.label} href={l.href}>
+              <Link key={l.label} to={l.href}>
                 {l.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
           {/* Desktop CTA */}
-          <a href="/contact" className="cta">
+          <Link to="/contact" className="cta">
             Contact Us
-          </a>
+          </Link>
 
           {/* Hamburger */}
           <button
